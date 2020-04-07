@@ -14,7 +14,7 @@ use App\Video;
 */
 
 Route::get('/', function () {
-    $videos= Video::all();
+   /* $videos= Video::all();
     foreach($videos as $video){
         echo $video->title.'</br>';
         echo $video->user->email.'</br>';
@@ -24,7 +24,74 @@ Route::get('/', function () {
         }
     }
     die();
-
-
+    */
     return view('welcome');
 });
+
+Route::auth();
+//LOS ARRAY COMO SEGUNDO PARAMETROS SON 
+//PARA ASIGNAR NOMBRES(ALIAS)
+Route::get('/home',array(
+    'as'=>'home',
+    'uses'=>'HomeController@index'
+));
+
+
+
+/*
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+*/
+
+//RUTAS DEL CONTROLADOR DE VIDEOS
+Route::get('/crear-video',array(
+    'as'=>'createVideo',
+    'middleware'=>'auth',
+    'uses'=> 'VideoController@createVideo'
+));
+
+
+Route::post('/guardar-video',array(
+    'as'=>'saveVideo',
+    'middleware'=>'auth',
+    'uses'=> 'VideoController@saveVideo'
+));
+
+//'filename' COMO PARAMETRO OBLIGATORIO
+Route::get('/miniatura/{filename}',array(
+    'as'=>'imageVideo',
+    'uses'=>'VideoController@getImage'
+));
+
+Route::get('/video/{video_id}',array(
+    'as'=>'detailVideo',
+    'uses'=>'VideoController@getVideoDetail'
+));
+
+Route::get('/video-file/{filename}',array(
+    'as'=>'fileVideo',
+    'uses'=>'VideoController@getVideo'
+));
+
+Route::post('/comment',array(
+    'as'=>'comment',
+    //MIDDLEWARE PARA AUTENTIFICACION
+    'middleware'=>'auth',
+    'uses'=>'CommentController@store'
+));
+
+
+

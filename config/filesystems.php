@@ -54,6 +54,21 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        //PONER LAS RUTAS DE LOS FILES
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/images'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'videos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/video'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+
+
 
         's3' => [
             'driver' => 's3',

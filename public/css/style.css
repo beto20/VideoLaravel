@@ -1,0 +1,15 @@
+body{
+
+
+
+}
+
+.video-image-mask{
+    width: 150px;
+    height: 100px;
+    overflow: hidden;
+}
+.video-image-mask .video-image{
+    width: 100%;
+}
+
