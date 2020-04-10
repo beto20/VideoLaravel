@@ -14,24 +14,13 @@ use App\Video;
 */
 
 Route::get('/', function () {
-   /* $videos= Video::all();
-    foreach($videos as $video){
-        echo $video->title.'</br>';
-        echo $video->user->email.'</br>';
-        //var_dump($video);
-        foreach ($video->comments as $comment) {
-            echo $comment->body;
-        }
-    }
-    die();
-    */
     return view('welcome');
 });
 
 Route::auth();
 //LOS ARRAY COMO SEGUNDO PARAMETROS SON 
 //PARA ASIGNAR NOMBRES(ALIAS)
-Route::get('/home',array(
+Route::get('/',array(
     'as'=>'home',
     'uses'=>'HomeController@index'
 ));
@@ -92,6 +81,51 @@ Route::post('/comment',array(
     'middleware'=>'auth',
     'uses'=>'CommentController@store'
 ));
+
+Route::get('/delete-comment/{comment_id}',array(
+    'as'=>'commentDelete',
+    'middleware'=>'auth',
+    'uses'=>'CommentController@delete'
+));
+
+Route::get('/delete-video/{video_id}',array(
+    'as'=>'videoDelete',
+    'middleware'=>'auth',
+    'uses'=>'VideoController@delete'
+));
+
+
+
+Route::get('/editar-video/{video_id}',array(
+    'as'=>'videoEdit',
+    'middleware'=>'auth',
+    'uses'=>'VideoController@edit'
+));
+
+
+Route::post('/update-video/{video_id}',array(
+    'as'=>'updateVideo',
+    'middleware'=>'auth',
+    'uses'=>'VideoController@update'
+));
+
+
+Route::get('/buscar/{search?}/{filter?}',[
+    'as'=>'videoSearch',
+    'uses'=>'VideoController@search'
+]);
+
+//PARA BORRAR LA MEMORIA CACHE Y NO SE TRABE
+Route::get('/clear-cache',function(){
+    $code=Artisan::call('cache:clear');
+});
+
+//USUARIO
+Route::get('/canal/{user_id}',array(
+    'as'=>'channel',
+    'uses'=>'UserController@channel'
+));
+
 
 
 

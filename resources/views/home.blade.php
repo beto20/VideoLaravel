@@ -29,40 +29,10 @@
                         {{session('message')}}
                     </div>
                 @endif
-    
-                <div id="video-list">
-                    @foreach ($videos as $video)
-                        <div class="video-item col-md-10 pull-left panel panel-default">
-                            <div class="panel-body">
-                                <!--mostrar imagen-->
-                                @if(Storage::disk('images')->has($video->imagen))
-                                    <div class="video-image-thumb col-md-3 pull-left">
-                                        <div class="video-imagen-mask">
-                                            <img src="{{url('/miniatura/'.$video->imagen)}}" class="video-imagen"/>
-                                        </div>
-                                    </div>
-                                    
-                                @endif
-
-                                <div class="data">
-                                <h4><a href="{{route('detailVideo',['video_id'=>$video->id])}}">{{$video->title}}</a></h4>
-                                <p>{{$video->user->name.' '.$video->user->surname}}</p>
-                                </div>
-                                <!--botones de accion-->
-                                <a href="" class="btn btn-success">Ver</a>
-                                @if(Auth::check() && Auth::user()->id==$video->user->id)
-                                    <a href="" class="btn btn-warning">Editar</a>
-                                    <a href="" class="btn btn-danger">Eliminar</a>
-                                @endif
-
-                            </div>
-    
-                        </div>
-                    @endforeach
-                </div>
+                @include('video.videosList')
+               
             </div>
-            <!--METODO 'links()' para la paginacion-->
-            {{$videos->links()}}
+
         </div>
     </div>
     @endsection

@@ -13,3 +13,7 @@ body{
     width: 100%;
 }
 
+.btn-filter{
+    display: block;
+    margin-top: 5px;
+}

@@ -33,7 +33,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 {{--SE CAMBIO EL NOMBRE DEL BRANDING Y LA RUTA "/"" POR "/HOME"--}}
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     {{-- config('app.name', 'Laravel') --}}
                     Videos Laravel
                 </a>
@@ -44,10 +44,10 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                    <li><a href="{{url('/home')}}">Inicio</a></li>
+                    <li><a href="{{url('/')}}">Inicio</a></li>
                     </ul>
                     
-                    <form action="" class="navbar-nav mr-auto" role="search">
+                <form action="{{url('/buscar')}}" class="navbar-nav mr-auto" role="search">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Que quieres ver" name="search">
                         </div>

@@ -23,7 +23,7 @@
             <div class="panel panel-default video-data">
                 <div class="panel-heading">
                     <div class="panel-title">
-                        subido por <strong>{{$video->user->name.' '.$video->user->surmame}}</strong>{{\FormatTime::LongTimeFilter($video->created_at)}}
+                        subido por <strong>{{$video->user->name.' '.$video->user->surname}}</strong>{{\FormatTime::LongTimeFilter($video->created_at)}}
                     </div>
                 </div>
                 <div class="panel-body">
@@ -33,7 +33,7 @@
 
 
             {{--COMENTARIOS--}}
-            @include('video/comments')
+            @include('video.comments')
         
         </div>
 
